@@ -1,0 +1,85 @@
+:root {
+    --main: #000000;
+    --accent: #ffffff;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* DEFAULT OVERRIDES */
+input[type=button] {
+
+}
+
+input[type=button]:hover {
+
+}
+
+input[type="button"]:active {
+    
+}
+
+/* MAIN CLASSES */
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(7,1fr);
+    grid-template-areas: 
+    "screen screen screen screen"
+    "screen screen screen screen"
+    "clear clear remove remove"
+    "num7 num8 num9 add"
+    "num4 num5 num6 substract"
+    "num1 num2 num3 multiply"
+    "operate num0 decimal divide";
+    margin: 20px;
+    padding: 20px;
+    min-width: 300px;
+    width: 500px;
+    min-height: 500px;
+    height: 500px;
+    gap: 10px;
+    background-color: var(--main);
+}
+
+.screen {
+    grid-area: screen;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    background-color: var(--accent);
+    padding: 10px;
+}
+
+.display {
+    text-align: right;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+.top {
+
+}
+
+.bot {
+
+}
+
+.infoButton {
+    margin-bottom: 20px;
+}
+
+/* SUBCLASSES */
