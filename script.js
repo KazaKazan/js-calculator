@@ -16,7 +16,30 @@ function addButtonMethod () {
     ALLBUTTONS.forEach(function(element) {
         element.onclick = getButtonValue;
     });
-}
+};
+
+document.addEventListener("keydown", function(event){
+    if (!Number.isNaN(Number(event.key))){
+        console.log(event.key)
+        calculatorLogic(event.key,"number")
+    }
+    else if (checkString(event.key,"=")) {
+        calculatorLogic(event.key,"operator")
+    }
+    else {
+        switch(event.key){
+            case "Enter":
+                calculatorLogic("=","operator");
+                break
+            case "Backspace":
+                calculatorLogic("remove","function");
+                break
+            case "Delete":
+                calculatorLogic("clear","function")
+                break
+        }
+    }
+});
 
 /* Operation Functions */
 let add = (numA,numB) => numA + numB;
@@ -151,7 +174,7 @@ function calculatorLogic(inputValue,inputOperation) {
 }
 
 /* TEST STUFF */
-
+console.log()
 /* SCRIPT BODY */
 
 addButtonMethod()
