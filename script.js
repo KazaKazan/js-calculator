@@ -18,6 +18,13 @@ function addButtonMethod () {
     });
 };
 
+function sizeLimiter () {
+    if(window.innerWidth <= 500) {
+        textLimit = 10;
+    }
+    else textLimit = 17;
+};
+
 document.addEventListener("keydown", function(event){
     if (!Number.isNaN(Number(event.key))){
         calculatorLogic(event.key,"number")
@@ -76,7 +83,7 @@ function operate (operationArray) {
 };
 
 /* I/O functions & vars */
-const textLimit = 17;
+let textLimit = 17;
 
 let previousValue = "";
 let currentValue = "";
@@ -186,3 +193,5 @@ function calculatorLogic(inputValue,inputOperation) {
 /* SCRIPT BODY */
 
 addButtonMethod()
+sizeLimiter()
+window.onresize = sizeLimiter;
