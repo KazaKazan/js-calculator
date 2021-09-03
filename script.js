@@ -18,32 +18,44 @@ function addButtonMethod () {
     });
 };
 
+function findButton (key) {
+    let button = null;
+    if (!Number.isNaN(Number(key)) || checkString(key,"=")) button = document.getElementById(key);
+    else {
+        switch(key){
+            case "Enter":
+                button = document.getElementById("operate");
+                break
+            case "Backspace":
+                button = document.getElementById("remove");
+                break
+            case "Delete":
+                button = document.getElementById("clear");
+                break
+        }
+    }
+    return button
+}
+
 function sizeLimiter () {
     if(window.innerWidth <= 500) {
-        textLimit = 10;
+        textLimit = 11;
     }
     else textLimit = 17;
 };
 
 document.addEventListener("keydown", function(event){
-    if (!Number.isNaN(Number(event.key))){
-        calculatorLogic(event.key,"number")
+    let button = findButton(event.key);
+    if (button != null){
+        button.onclick();
+        button.classList.add("active")
     }
-    else if (checkString(event.key,"=")) {
-        calculatorLogic(event.key,"operator")
-    }
-    else {
-        switch(event.key){
-            case "Enter":
-                calculatorLogic("=","operator");
-                break
-            case "Backspace":
-                calculatorLogic("remove","function");
-                break
-            case "Delete":
-                calculatorLogic("clear","function")
-                break
-        }
+});
+
+document.addEventListener("keyup", function(event){
+    let button = findButton(event.key);
+    if (button != null){
+        button.classList.remove("active")
     }
 });
 
@@ -120,7 +132,6 @@ function trimAndRound () {
     if (valType === "number"){
         if (currentValue.toString().length > textLimit){
             currentValue = currentValue.toExponential(2)
-            currentValue = Number(currentValue)
         };
     };
 };
@@ -178,7 +189,7 @@ function calculatorLogic(inputValue,inputOperation) {
                     previousState = "";
                 }
                 else {
-                    if(typeof currentValue === "string") currentValue = currentValue.slice(0,-1);
+                    if(previousState != "operated" && typeof currentValue === "string") currentValue = currentValue.slice(0,-1);
                 };
     };
 
