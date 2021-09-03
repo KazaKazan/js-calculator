@@ -106,9 +106,9 @@ function findButton (key) {
 
 function sizeLimiter () {
     if(window.innerWidth <= 500) {
-        textLimit = 11;
+        textLimit = 9;
     }
-    else textLimit = 17;
+    else textLimit = 13;
 };
 
 /* Calculator Functions */
