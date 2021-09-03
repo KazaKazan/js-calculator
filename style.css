@@ -106,10 +106,9 @@ input[type="button"]:active {
 @media only screen and (max-width: 500px) {
 
     .main {
-        margin-left:5%;
-        margin-top: 10%;
+        padding: 5%;
         width: 90%;
-        height: 95%;
+        height: 90%;
     }
 
     .frame {
@@ -121,7 +120,8 @@ input[type="button"]:active {
         padding: 0;
         gap: 5px;
         border-style: none;
-        margin-bottom: 30px;
+        margin-top: 10%;
+        margin-bottom: 5%;
     }
 
     .infoButton{
@@ -130,5 +130,6 @@ input[type="button"]:active {
         height: 5%;
         width: 100%;
         margin-bottom: 0;
+        font-size: 10px !important;
     }
   }
