@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarina&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>Radculator</title>
 </head>
 
 <body>
-    <div class="main">
+    <div class="main" id="main">
+        <div class="header"><p class="title">RADCULATOR</p></div>
         <div class="frame">
             <div class="screen">
                 <p id="displayTop" class="display top"></p>
                 <p id="displayBot" class="display"></p>
             </div>
             
-            <input type="button" value="CLEAR" id="clear" class="function" style="grid-area: clear;">
+            <input type="button" value="CLR" id="clear" class="function" style="grid-area: clear;">
             <input type="button" value="+" id="+" class="operator">
             <input type="button" value="-" id="-" class="operator">
             <input type="button" value="*" id="*" class="operator">
@@ -31,7 +35,7 @@
             <input type="button" value="1" id="1" class="number">
             <input type="button" value="2" id="2" class="number">
             <input type="button" value="3" id="3" class="number">
-            <input type="button" value="🠔" id="remove" class="function">
+            <input type="button" value="REM" id="remove" class="function">
             <input type="button" value="0" id="0" class="number">
             <input type="button" value="." id="decimal" class="operator">
             <input type="button" value="=" id="operate" class="operator" style="grid-area: operate;">
@@ -40,6 +44,7 @@
 
         <input type="button" class="infoButton" value="INFO" id="infoButton" >
     </div>
+    <div class="main" id="animation" style="display: none; transition: 1s; transform: scale(0);"><img src="galaxy.svg" alt="What have you done?" class="anim"></div>
 </body>
 
 </html>

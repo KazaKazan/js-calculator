@@ -18,32 +18,6 @@ function addButtonMethod () {
     });
 };
 
-function findButton (key) {
-    let button = null;
-    if (!Number.isNaN(Number(key)) || checkString(key,"=")) button = document.getElementById(key);
-    else {
-        switch(key){
-            case "Enter":
-                button = document.getElementById("operate");
-                break
-            case "Backspace":
-                button = document.getElementById("remove");
-                break
-            case "Delete":
-                button = document.getElementById("clear");
-                break
-        }
-    }
-    return button
-}
-
-function sizeLimiter () {
-    if(window.innerWidth <= 500) {
-        textLimit = 11;
-    }
-    else textLimit = 17;
-};
-
 document.addEventListener("keydown", function(event){
     let button = findButton(event.key);
     if (button != null){
@@ -66,9 +40,9 @@ let multiply = (numA,numB) => numA * numB;
 
 function divide (numA,numB) {
     if (numA === 0 && numB != 0) return 0; /* 0 divided by a number is 0, necessary because otherwise returns undefined. */
-    else if (numA === 0 && numB === 0) return "UNDEFINED"; /* 0 divided by 0 is undefined. */
+    else if (numA === 0 && numB === 0) return "NOT RAD!"; /* 0 divided by 0 is undefined. */
     else if (numB != 0) return numA / numB; /* This one just returns number divided by number. */
-    else return("JUST NO."); /* Snarky comment for number divided by 0 as per assignment. */
+    else divideByZero(); /* Division by zero easter egg. */
 };
 
 function operate (operationArray) {
@@ -110,6 +84,34 @@ function getButtonValue () {
         calculatorLogic(this.id,this.className);
     };
 };
+
+function findButton (key) {
+    let button = null;
+    if (!Number.isNaN(Number(key)) || checkString(key,"=")) button = document.getElementById(key);
+    else {
+        switch(key){
+            case "Enter":
+                button = document.getElementById("operate");
+                break
+            case "Backspace":
+                button = document.getElementById("remove");
+                break
+            case "Delete":
+                button = document.getElementById("clear");
+                break
+        }
+    }
+    return button
+}
+
+function sizeLimiter () {
+    if(window.innerWidth <= 500) {
+        textLimit = 11;
+    }
+    else textLimit = 17;
+};
+
+/* Calculator Functions */
 
 /* Will check a given string to see if it contains operators. Excludes optional arguments from search. */
 function checkString (string) {
@@ -164,6 +166,10 @@ function calculatorLogic(inputValue,inputOperation) {
                 case "=":
                     let opArray = previousValue.split(" ");
                     opArray[0] = Number(opArray[0])
+                    if(isNaN(opArray[0])){
+                        currentValue = "DUDE NOT COOL!"
+                        break
+                    }
                     opArray.push(Number(currentValue));
                     currentValue = operate(opArray);
                     previousValue = "";
@@ -199,7 +205,20 @@ function calculatorLogic(inputValue,inputOperation) {
     DISPLAYBOTTOM.textContent = currentValue;
 }
 
-/* TEST STUFF */
+/* EASTER EGG */
+
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve,ms));
+};
+
+function divideByZero() {
+    const mainDiv = document.getElementById("main");
+    const animDiv = document.getElementById("animation");
+    mainDiv.classList.add("downscale");
+    wait(1000).then(() => mainDiv.style.setProperty("display","none"));
+    wait(1500).then(() => animDiv.style.setProperty("display","flex"));
+    wait(1600).then(() => animDiv.style.setProperty("transform","scale(1)"))
+}
 
 /* SCRIPT BODY */
 addButtonMethod()
