@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sarina&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="galaxy.svg" type="image/x-icon">
     <script src="script.js" defer></script>
     <title>Radculator</title>
 </head>
@@ -16,7 +17,23 @@
 <body>
     <div class="main" id="main">
         <div class="header"><p class="title">RADCULATOR</p></div>
-        <div class="frame">
+        
+        <div class="frame infoFrame hidden" id="infoFrame" style="color: white;">
+            <h3>Keyboard Shortcuts</h3>
+            <div class="hotkeyContainer">
+                <p><b>Delete:</b> Clear</p>
+                <p><b>Backspace:</b> Remove</p>
+            </div>
+            <div class="hotkeyContainer">
+                <p><b>Enter:</b> Operate</p>
+                <p><b>Number Keys:</b> Input number</p>
+            </div>
+            <p><b>+ - * /:</b> Input operation</p>
+            <h3>DO NOT DIVIDE BY ZERO</h3>
+            <div style="display: grid; justify-items: center;"><b><a href="https://github.com/KazaKazan/js-calculator">GitHub</a></b></div>
+        </div>
+
+        <div class="frame calculatorFrame" id="calculatorFrame">
             <div class="screen">
                 <p id="displayTop" class="display top"></p>
                 <p id="displayBot" class="display"></p>

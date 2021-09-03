@@ -4,17 +4,18 @@
 /* Buttons */
 const ALLBUTTONS = Array.from(document.querySelectorAll("input[type='button']"))
 const OPERATORBUTTONS = Array.from(document.querySelectorAll(".operator"));
+const INFOBUTTON = document.getElementById("infoButton");
 const DISPLAYTOP = document.getElementById("displayTop")
 const DISPLAYBOTTOM = document.getElementById("displayBot")
 
 /* ==FUNCTIONS== */
 /* Page Preparation */
-
 window.onresize = sizeLimiter;
 
 function addButtonMethod () {
     ALLBUTTONS.forEach(function(element) {
-        element.onclick = getButtonValue;
+        if (element === INFOBUTTON) element.onclick = toggleCard;
+        else element.onclick = getButtonValue;
     });
 };
 
@@ -109,6 +110,16 @@ function sizeLimiter () {
         textLimit = 9;
     }
     else textLimit = 13;
+};
+
+function toggleCard() {
+    const calcFrame = document.getElementById("calculatorFrame");
+    const infoFrame = document.getElementById("infoFrame");
+
+    calcFrame.classList.toggle("hidden");
+    console.log(calcFrame)
+    infoFrame.classList.toggle("hidden");
+    console.log(infoFrame)
 };
 
 /* Calculator Functions */
