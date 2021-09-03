@@ -3,14 +3,14 @@
 
 /* Buttons */
 const ALLBUTTONS = Array.from(document.querySelectorAll("input[type='button']"))
-const NUMBERBUTTONS = Array.from(document.querySelectorAll(".number"));
 const OPERATORBUTTONS = Array.from(document.querySelectorAll(".operator"));
-const FUNCTIONBUTTONS = Array.from(document.querySelectorAll(".function"));
 const DISPLAYTOP = document.getElementById("displayTop")
 const DISPLAYBOTTOM = document.getElementById("displayBot")
 
 /* ==FUNCTIONS== */
 /* Page Preparation */
+
+window.onresize = sizeLimiter;
 
 function addButtonMethod () {
     ALLBUTTONS.forEach(function(element) {
@@ -120,7 +120,7 @@ function trimAndRound () {
     if (valType === "number"){
         if (currentValue.toString().length > textLimit){
             currentValue = currentValue.toExponential(2)
-            console.log(currentValue)
+            currentValue = Number(currentValue)
         };
     };
 };
@@ -178,7 +178,7 @@ function calculatorLogic(inputValue,inputOperation) {
                     previousState = "";
                 }
                 else {
-                    currentValue = currentValue.slice(0,-1)
+                    if(typeof currentValue === "string") currentValue = currentValue.slice(0,-1);
                 };
     };
 
@@ -191,7 +191,5 @@ function calculatorLogic(inputValue,inputOperation) {
 /* TEST STUFF */
 
 /* SCRIPT BODY */
-
 addButtonMethod()
 sizeLimiter()
-window.onresize = sizeLimiter;
