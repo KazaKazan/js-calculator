@@ -20,7 +20,6 @@ function addButtonMethod () {
 
 document.addEventListener("keydown", function(event){
     if (!Number.isNaN(Number(event.key))){
-        console.log(event.key)
         calculatorLogic(event.key,"number")
     }
     else if (checkString(event.key,"=")) {
@@ -71,7 +70,7 @@ function operate (operationArray) {
         case "/":
             solution = divide(operationArray[0],operationArray[2]);
             break 
-    }
+    };
 
     return solution
 };
@@ -90,8 +89,8 @@ function getButtonValue () {
     }
     else {
         calculatorLogic(this.id,this.className);
-    }
-}
+    };
+};
 
 /* Will check a given string to see if it contains operators. Excludes optional arguments from search. */
 function checkString (string) {
@@ -104,13 +103,19 @@ function checkString (string) {
         }
         else if (string.includes(opArray[i])) {
             return true
-        }
-    }
+        };
+    };
     return false
 };
 
 function trimAndRound () {
-
+    let valType = typeof currentValue
+    if (valType === "number"){
+        if (currentValue.toString().length > textLimit){
+            currentValue = currentValue.toExponential(2)
+            console.log(currentValue)
+        };
+    };
 };
 
 /* The main calculator logic. Handles the button presses and sends the inputs to the respective functions. */
@@ -154,9 +159,9 @@ function calculatorLogic(inputValue,inputOperation) {
                         previousValue = currentValue + ` ${inputValue}`;
                         currentValue = ""
                         previousState = inputOperation;
-                }
+                };
                     break
-            }
+            };
             break
         /* Function Buttons */
             case "function":
@@ -167,14 +172,17 @@ function calculatorLogic(inputValue,inputOperation) {
                 }
                 else {
                     currentValue = currentValue.slice(0,-1)
-                }
-    }
+                };
+    };
+
+    trimAndRound()
+
     DISPLAYTOP.textContent = previousValue;
     DISPLAYBOTTOM.textContent = currentValue;
 }
 
 /* TEST STUFF */
-console.log()
+
 /* SCRIPT BODY */
 
 addButtonMethod()
